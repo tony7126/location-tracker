@@ -21,6 +21,7 @@ $ Go to http://localhost:8000
 
 ### Caveats
 
+* Realistically each user would have their own map/Fusion Table, but for the sake of simplicity I made the Fusion Table project wide
 * I left the bower components in the repository.  Normally they would be gitignored to avoid bloat in the repo
 * Using a fusion table layer was attempted but the map on the page wasn't getting updated quickly enough in many cases (even when forcing a refresh)
 * There is a JSON file storing sensitive information in the repository for Google's API.  I acknowledge this is bad practice but convenient for the sake of running the project! 
