@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+	<head>
+		<style type="text/css">
+		  html, body { height: 100%; margin: 0; padding: 0; }
+		  .angular-google-map-container { height: 800px; width: 800px; }
+		  .spinner{
+			position:fixed;
+		    left: 50%;
+		    top:50%;
+		    z-index:100;
+		    transform: translateX(-50%);
+			}
+		</style>
+		
+		<link rel="stylesheet" type="text/css" href="{% static 'bower_components/ng-table/dist/ng-table.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}">
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+	</head>
+	{% verbatim %}
+	<body ng-app="sherpanyapp" >
+		<nav class="navbar navbar-default" ng-controller="navController">
+			<i class="fa fa-spinner fa-spin spinner" style="font-size:48px" ng-show="io"></i>
+			<div class="container-fluid">
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="#">Sherpany Interview</a>
+			  </div>
+			  <div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li class="active"><a href="#">Home</a></li>
+				  <li><a href="#" ng-click="clearData()">Clear!</a></li>
+				</ul>
+			  </div><!--/.nav-collapse -->
+			</div><!--/.container-fluid -->
+		</nav>
+	<div class = "container" >
+		<div class = "row" ng-controller="mapController">
+			<h2 class = "text-center" style="margin-bottom:20px">Sherpany Locations</h2>
+			<i class="fa fa-spinner fa-spin spinner" style="font-size:48px" ng-show="io"></i>
+			<ng-map style="height:40%" center="10,10" zoom="3">
+				<marker ng-repeat="position in locData.locations" position="{{position.latitude}},{{position.longitude}}"></marker>
+
+			</ng-map>
+		</div>
+		<div class = "row" ng-controller="tableController">
+			<table style="margin-top:20px;" ng-table="tableParams" class = "table table-condensed table-bordered table-striped">
+				<tr ng-repeat="l in $data">
+					<td data-title="'Address'">{{ l.address }}</td>
+					<td data-title="'Longitude'">{{ l.latitude }}</td>
+					<td data-title="'Latitude'">{{ l.longitude }}</td>
+				</tr>
+			</table>
+		</div>
+		
+	</div>
+	{% endverbatim %}
+	{% include 'javascripts.html' %}
+	</body>
+</html>
