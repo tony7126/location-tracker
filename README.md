@@ -26,4 +26,5 @@ $ Go to http://localhost:8000
 * Using a fusion table layer was attempted but the map on the page wasn't getting updated quickly enough in many cases (even when forcing a refresh)
 * There is a JSON file storing sensitive information in the repository for Google's API.  I acknowledge this is bad practice but convenient for the sake of running the project! 
 * I use pre_save and post_delete signals to update Fusion Tables.  This means that when the map is cleared, individual delete queries are sent to Fusion Tables which is far less efficient than just sending one big "delete all" query.  This can be changed if need be.
+* Django compress app is installed and JS script tags are wrapped in the compress tag but I've left static compression off while testing so page load time might be a little slower than it could be.
 
